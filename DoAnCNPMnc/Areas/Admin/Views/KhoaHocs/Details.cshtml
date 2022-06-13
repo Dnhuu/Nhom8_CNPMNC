@@ -1,0 +1,73 @@
+﻿@model DoAnCNPMnc.Models.KhoaHoc
+
+@{
+    ViewBag.Title = "Chi tiết khóa học";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+    <div style="margin: 20px">
+        <h2>Chi tiết</h2>
+
+        <div>
+            <h4>Khóa học</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Tên Khóa Học
+                    @*@Html.DisplayNameFor(model => model.TenKhoaHoc)*@
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenKhoaHoc)
+                </dd>
+
+                <dt>
+                    Số Lượng Sinh Viên
+                    @*@Html.DisplayNameFor(model => model.SoluongSV)*@
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SoluongSV)
+                </dd>
+
+                <dt>
+                    Ngày Bắt Đầu
+                    @*@Html.DisplayNameFor(model => model.NgayBatDau)*@
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NgayBatDau)
+                </dd>
+
+                <dt>
+                    Số Tiết
+                    @*@Html.DisplayNameFor(model => model.SoTiet)*@
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SoTiet)
+                </dd>
+
+                <dt>
+                    Tên Giảng Viên
+                    @*@Html.DisplayNameFor(model => model.GiangVien.TenGV)*@
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.GiangVien.TenGV)
+                </dd>
+
+                @*<dt>
+                    @Html.DisplayNameFor(model => model.SinhVien.Hoten)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SinhVien.Hoten)
+                </dd>*@
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.MaKhoaHoc }) |
+            @Html.ActionLink("Quay lại", "Index")
+        </p>
+    </div>

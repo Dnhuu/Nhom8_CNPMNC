@@ -1,0 +1,87 @@
+﻿@model DoAnCNPMnc.Models.KhoaHoc
+
+@{
+    ViewBag.Title = "Sửa Khóa Học";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div style="margin: 20px">
+        <h2>Sửa Khóa Học</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Khóa Học</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaKhoaHoc)
+
+                <div class="form-group">
+                    <div class="control-label col-md-2" style="font-weight:bold">
+                        Tên Khóa Học
+                    </div>
+                    @*@Html.LabelFor(model => model.TenKhoaHoc, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TenKhoaHoc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenKhoaHoc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2" style="font-weight:bold">
+                        Số Lượng Sinh Viên
+                    </div>
+                    @*@Html.LabelFor(model => model.SoluongSV, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SoluongSV, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SoluongSV, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2" style="font-weight:bold">
+                        Mã Giảng Viên
+                    </div>
+                    @*@Html.LabelFor(model => model.MaGV, "MaGV", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.DropDownList("MaGV", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MaGV, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2" style="font-weight:bold">
+                        Ngày Bắt Đầu
+                    </div>
+                    @*@Html.LabelFor(model => model.NgayBatDau, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NgayBatDau, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NgayBatDau, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2" style="font-weight:bold">
+                        Số Tiết
+                    </div>
+                    @*@Html.LabelFor(model => model.SoTiet, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SoTiet, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SoTiet, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Lưu" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    </div>

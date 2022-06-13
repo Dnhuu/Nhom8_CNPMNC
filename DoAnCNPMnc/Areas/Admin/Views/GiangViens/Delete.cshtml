@@ -1,0 +1,72 @@
+﻿@model DoAnCNPMnc.Models.GiangVien
+
+@{
+    ViewBag.Title = "Xóa Giảng Viên";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div style="margin: 20px">
+        <h2>Xóa Giảng Viên</h2>
+
+        <h3>Bạn có chắc muốn xóa giảng viên này?</h3>
+        <div>
+            <h4>Giảng Viên</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Tên Giảng Viên
+                    @*@Html.DisplayNameFor(model => model.TenGV)*@
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenGV)
+                </dd>
+
+                <dt>
+                    Học Vị
+                    @*@Html.DisplayNameFor(model => model.HocVi)*@
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.HocVi)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    Số Điện Thoại
+                    @*@Html.DisplayNameFor(model => model.Sdt)*@
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Sdt)
+                </dd>
+
+                <dt>
+                    Mã Tài Khoản
+                    @*@Html.DisplayNameFor(model => model.MaTaiKhoan)*@
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MaTaiKhoan)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Xóa" class="btn btn-default" /> |
+                    @Html.ActionLink("Quay lại", "Index")
+                </div>
+            }
+        </div>
+    </div>

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KhocHocGiangVienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="GiangVien">
+    <Key>
+      <PropertyRef Name="MaGV" />
+    </Key>
+    <Property Name="MaGV" Type="int" Nullable="false" />
+    <Property Name="TenGV" Type="nvarchar" MaxLength="50" />
+    <Property Name="HocVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="30" />
+    <Property Name="Sdt" Type="nvarchar" MaxLength="15" />
+    <Property Name="MaTaiKhoan" Type="int" />
+    <Property Name="ThoiKhoaBieu" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="KhoaHoc">
+    <Key>
+      <PropertyRef Name="MaKhoaHoc" />
+    </Key>
+    <Property Name="MaKhoaHoc" Type="int" Nullable="false" />
+    <Property Name="TenKhoaHoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoluongSV" Type="int" />
+    <Property Name="MaGV" Type="int" />
+    <Property Name="MaSV" Type="int" />
+    <Property Name="NgayBatDau" Type="date" />
+    <Property Name="SoTiet" Type="int" />
+  </EntityType>
+  <EntityType Name="PhanQuyen">
+    <Key>
+      <PropertyRef Name="MaPQ" />
+    </Key>
+    <Property Name="MaPQ" Type="int" Nullable="false" />
+    <Property Name="TenQuyen" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SinhVien">
+    <Key>
+      <PropertyRef Name="MaSV" />
+    </Key>
+    <Property Name="MaSV" Type="int" Nullable="false" />
+    <Property Name="Hoten" Type="nvarchar" MaxLength="30" />
+    <Property Name="NgaySinh" Type="date" />
+    <Property Name="GioiTinh" Type="bit" />
+    <Property Name="QueQuan" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiemThi" Type="int" />
+    <Property Name="MaTaiKhoan" Type="int" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="MaTaiKhoan" />
+    </Key>
+    <Property Name="MaTaiKhoan" Type="int" Nullable="false" />
+    <Property Name="MaGV" Type="int" />
+    <Property Name="MaSV" Type="int" />
+    <Property Name="MaPQ" Type="int" />
+    <Property Name="TenTaiKhoan" Type="nvarchar" MaxLength="50" />
+    <Property Name="Matkhau" Type="nvarchar" MaxLength="30" />
+    <Property Name="NgayTao" Type="date" />
+  </EntityType>
+  <Association Name="FK_KhoaHoc_GiangVien">
+    <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+    <End Role="KhoaHoc" Type="Self.KhoaHoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiangVien">
+        <PropertyRef Name="MaGV" />
+      </Principal>
+      <Dependent Role="KhoaHoc">
+        <PropertyRef Name="MaGV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KhoaHoc_SinhVien">
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="0..1" />
+    <End Role="KhoaHoc" Type="Self.KhoaHoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinhVien">
+        <PropertyRef Name="MaSV" />
+      </Principal>
+      <Dependent Role="KhoaHoc">
+        <PropertyRef Name="MaSV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SinhVien_TaiKhoan">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="MaTaiKhoan" />
+      </Principal>
+      <Dependent Role="SinhVien">
+        <PropertyRef Name="MaTaiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaiKhoan_GiangVien">
+    <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiangVien">
+        <PropertyRef Name="MaGV" />
+      </Principal>
+      <Dependent Role="TaiKhoan">
+        <PropertyRef Name="MaGV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaiKhoan_PhanQuyen">
+    <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="0..1" />
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhanQuyen">
+        <PropertyRef Name="MaPQ" />
+      </Principal>
+      <Dependent Role="TaiKhoan">
+        <PropertyRef Name="MaPQ" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaiKhoan_SinhVien">
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="0..1" />
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinhVien">
+        <PropertyRef Name="MaSV" />
+      </Principal>
+      <Dependent Role="TaiKhoan">
+        <PropertyRef Name="MaSV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KhocHocGiangVienModelStoreContainer">
+    <EntitySet Name="GiangVien" EntityType="Self.GiangVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhoaHoc" EntityType="Self.KhoaHoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SinhVien" EntityType="Self.SinhVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_KhoaHoc_GiangVien" Association="Self.FK_KhoaHoc_GiangVien">
+      <End Role="GiangVien" EntitySet="GiangVien" />
+      <End Role="KhoaHoc" EntitySet="KhoaHoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KhoaHoc_SinhVien" Association="Self.FK_KhoaHoc_SinhVien">
+      <End Role="SinhVien" EntitySet="SinhVien" />
+      <End Role="KhoaHoc" EntitySet="KhoaHoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SinhVien_TaiKhoan" Association="Self.FK_SinhVien_TaiKhoan">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="SinhVien" EntitySet="SinhVien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaiKhoan_GiangVien" Association="Self.FK_TaiKhoan_GiangVien">
+      <End Role="GiangVien" EntitySet="GiangVien" />
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaiKhoan_PhanQuyen" Association="Self.FK_TaiKhoan_PhanQuyen">
+      <End Role="PhanQuyen" EntitySet="PhanQuyen" />
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaiKhoan_SinhVien" Association="Self.FK_TaiKhoan_SinhVien">
+      <End Role="SinhVien" EntitySet="SinhVien" />
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

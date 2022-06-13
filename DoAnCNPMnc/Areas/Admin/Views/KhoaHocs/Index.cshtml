@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DoAnCNPMnc.Models.KhoaHoc>
+
+@{
+    ViewBag.Title = "Quản lý Khóa học";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div style="margin: 20px">
+        <h2>Quản Lý Khóa Học</h2>
+        <a href="@Url.Action("Create","KhoaHocs")" class="btn btn-outline-secondary" style="margin-bottom: 20px">Thêm Khóa Học</a>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Tên Khóa Học
+                        @*Html.DisplayNameFor(model => model.TenKhoaHoc)*@
+                    </th>
+                    <th>
+                        Số lượng SV
+                        @*Html.DisplayNameFor(model => model.SoluongSV)*@
+                    </th>
+                    <th>
+                        Ngày Bắt Đầu
+                        @*Html.DisplayNameFor(model => model.NgayBatDau)*@
+                    </th>
+                    <th>
+                        Số Tiết
+                        @*Html.DisplayNameFor(model => model.SoTiet)*@
+                    </th>
+                    <th>
+                        Tên Giảng Viên
+                        @*Html.DisplayNameFor(model => model.GiangVien.TenGV*@
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenKhoaHoc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoluongSV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayBatDau)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoTiet)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GiangVien.TenGV)
+                        </td>                
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaKhoaHoc }) |
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaKhoaHoc }) |
+                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaKhoaHoc })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
